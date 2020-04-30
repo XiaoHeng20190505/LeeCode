@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>快乐数</title>
+	<!-- 主要判断什么是非快乐数，当出现过的数字再次出现的时候，就代表会无线循环下去，就是非快乐数了 -->
+</head>
+
+<body>
+	<script>
+		var isHappy = function (n) {
+			let num = n
+			let everyNum = []
+			while (num !== 1) {
+				if(everyNum.indexOf(num)<0){
+					everyNum.push(num)
+				}else{
+					return  false
+				}
+				num = numDetail(num)
+			} 
+			return true
+		};
+		// 将数组的每个数都转换成数组中的元素
+		var numToArray = function (n) {
+			let nArray = []
+			let nstr = n.toString()
+			let len = nstr.length;
+			let char = ''
+			for (let i = 0; i < len; i++) {
+				char = nstr.charAt(i)
+				nArray.push(char)
+			}
+			return nArray
+		}
+		// 将数组做平方和处理
+		var numDetail = function(n){
+			let nArray = numToArray(n)
+			let arrayLen = nArray.length
+			let sum = 0
+			for (let i = 0; i < arrayLen; i++) {
+				sum += nArray[i] * nArray[i]
+			}
+			return sum
+		}
+
+		console.log(isHappy(7))
+	</script>
+</body>
+
+</html>
