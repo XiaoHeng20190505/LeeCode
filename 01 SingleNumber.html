@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>单数</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<alert-box>
+			Something bad happened.
+		</alert-box>
+	</div>
+	<script>
+		/**
+		* @param {number[]} nums
+		* @return {number}
+		*/
+		var singleNumber = function (nums) {
+			let arrayLen = nums.length;
+			let arrayObj = {};
+			for (let i = 0; i < arrayLen; i++) {
+				if (arrayObj[nums[i]] === undefined) {
+					arrayObj[nums[i]] = 1;
+				} else {
+					arrayObj[nums[i]]++;
+				}
+			}
+			for (let key in arrayObj) {
+				if (arrayObj[key] === 1) {
+					return key
+				}
+			}
+
+		};
+		let nums = [2, 2, 1]
+		console.log(singleNumber(nums))
+
+		Vue.component('alert-box', {
+			template: `
+				<div class="demo-alert-box">
+				<strong>Error!</strong>
+				<slot></slot>
+				</div>
+			`
+		})
+		let vm = new Vue({
+			el:'#app'
+		})
+	</script>
+</body>
+
+</html>
