@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>重复的DNA序列</title>
+	<!-- 使用Object对象记录所有出现的DNA及出现的次数，遍历Object，查找出现2次及以上的内容，返回为数组类型。 -->
+</head>
+
+<body>
+	<script>
+		/**
+		* @param {string} s
+		* @return {string[]}
+		*/
+		var findRepeatedDnaSequences = function (s) {
+			let obj = {}
+			let len = s.length
+			let a = []
+			for (let i = 0; i <= (len - 10); i++) {
+				a[0] = s.slice(i, i + 10)
+				obj.hasOwnProperty(a[0]) ? obj[a[0]]++ : obj[a[0]] = 1
+			}
+			let result = []
+			for (let key in obj) {
+				if (obj[key] > 1) {
+					result.push(key)
+				}
+			}
+			return result
+		};
+		let s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+		console.log(findRepeatedDnaSequences(s))
+
+
+
+	</script>
+</body>
+
+</html>
