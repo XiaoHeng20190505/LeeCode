@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一个错误的版本</title>
+    <!-- 
+        You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
+        Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+        You are given an API bool isBadVersion(version) which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+        Example:
+            Given n = 5, and version = 4 is the first bad version.
+            call isBadVersion(3) -> false
+            call isBadVersion(5) -> true
+            call isBadVersion(4) -> true
+            Then 4 is the first bad version.
+        主要解决思想是：根据 二分法查找。
+            优先去查找最中间的那个数字是否是BadVersion，如果是则再使用二分法查找左半边，如果不是则在使用二分法查找右半边，直到最后找到想要找的值
+
+     -->
+</head>
+<body>
+    <script>
+        /**
+        * Definition for isBadVersion()
+        * 
+        * @param {integer} version number
+        * @return {boolean} whether the version is bad
+        * isBadVersion = function(version) {
+        *     ...
+        * };
+        */
+
+        /**
+         * @param {function} isBadVersion()
+         * @return {function}
+         */
+        var solution = function (isBadVersion) {
+            /**
+             * @param {integer} n Total versions
+             * @return {integer} The first bad version
+             */
+            return function (n) {
+                let left = 1,
+                    right = n,
+                    middle = 1
+                if (isBadVersion(1)) {
+                    return 1
+                }
+                while (middle != right) {
+                    if (isBadVersion(middle)) {
+                        right = middle
+                        middle = Math.ceil((right + left) / 2)
+                    } else {
+                        left = middle
+                        middle = Math.ceil((left + right) / 2)
+                    }
+                }
+                return middle
+
+            };
+        };
+    </script>
+</body>
+</html>
