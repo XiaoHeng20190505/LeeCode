@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+    解题方法：
+        1、首先想到的是，将字符串，转变成数组。将Stones转变成对象进行记录每个字符出现的次数。遍历数组，比对对象之中是否出现，出现就记录下来出现的次数进行累加
+        2、参考别人的做法：将Stones转换成数组，进行遍历，查验每个item是否存在于Jewels，如果在则计数。
+        3、参考别人的想法：拿着Jewels中的字符串去Stones中去匹配，匹配到就返回，并用于计数。
+
+     -->
+</head>
+
+<body>
+    <script>
+        /**
+        * @param {string} J
+        * @param {string} S
+        * @return {number}
+        */
+
+        /*
+        //第一种：最笨的方法
+        var numJewelsInStones = function (J, S) {
+            let objS = {},
+                arrJ = [],
+                arrS = [],
+                count = 0
+            arrJ = J.split('')
+            arrS = S.split('')
+            for (let val of arrS) {
+                if (Object.keys(objS).indexOf(val) === -1) {
+                    objS[val] = 1
+                } else {
+                    objS[val]++
+                }
+            }
+            console.log(objS)
+            for (let val of arrJ) {
+                if (objS[val]) {
+                    count += objS[val]
+                }
+            }
+            return count
+        };
+        */
+        /*
+        // 第二种：利用ES6语法reduce
+        var numJewelsInStones = function (J, S) {
+            return S.split('').reduce((a, c) => J.includes(c) ? a + 1 : a, 0);
+        };
+        */
+        
+        // 第三种：利用正则
+        var numJewelsInStones = function (J, S) {
+            let matches = S.match(new RegExp(J.split("").join("|"), 'g'))
+            return matches === null ? 0 : matches.length
+        }
+        
+        
+            
+        var J = "aA", S = "aAAbbbb"
+        console.log(numJewelsInStones(J,S))
+    </script>
+</body>
+
+</html>

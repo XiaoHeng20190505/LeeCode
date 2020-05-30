@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * @param {string} ransomNote
+        * @param {string} magazine
+        * @return {boolean}
+        */
+        // 第一种做法：
+        var canConstruct = function (ransomNote, magazine) {
+            let flag = true
+            ransomNote.split('').reduce((acc, cur) => {
+                let index = magazine.indexOf(cur)
+                console.log(index)
+                if (index < 0) {
+                    flag = false
+                } else {
+                    magazine = magazine.replace(cur, '')
+                }
+            }, 0)
+            return flag
+
+        };
+        // 第二种使用Map保存键值对，记录原始插入顺序
+        // var canConstruct = function (ransomNote, magazine) {
+        //         const dict = new Map();
+        //         for (c of magazine.split('')) {
+        //             dict.has(c) ? dict.set(c, 1 + dict.get(c)) : dict.set(c, 1);
+        //         }
+        //         for (c of ransomNote) {
+        //             if (!dict.has(c) || 1 > dict.get(c)) {
+        //                 return false;
+        //             }
+        //             dict.set(c, dict.get(c) - 1)
+        //         }
+        //         return true;
+        //     };
+        console.log(canConstruct('a', 'b'))
+    </script>
+</body>
+
+</html>

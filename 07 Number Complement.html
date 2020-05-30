@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Complement</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number} num
+         * @return {number}
+         */
+        // 第一种方法：将数字转换成二进制计算
+        // var findComplement = function (num) {
+        //     let round = num, //取整
+        //         surplus = 0, //取余
+        //         arr = [],
+        //         result = 0
+        //     //取二进制
+        //     while (round > 0) {
+        //         surplus = round % 2
+        //         round = Math.floor(round / 2)
+        //         arr.unshift(surplus)
+        //     }
+        //     //二进制取反
+        //     arr.reduce((acc, cur, index) => {
+        //         if (arr[index] === 1) {
+        //             arr[index] = 0
+        //         } else {
+        //             arr[index] = 1
+        //         }
+        //     }, 0)
+        //     //取消前置0
+        //     for (let key in arr) {
+        //         if (key == 0) {
+        //             arr.shift()
+        //         } else {
+        //             break
+        //         }
+        //     }
+        //     arr.reverse()//数组反转用于计算
+        //     for (let index in arr) {
+        //         result += arr[index] * (Math.pow(2, index))
+        //     }
+        //     return result
+        // };
+        // 第二种方法：要清楚补码与原码之间的关系:原码+补码+1 = 2^n
+
+        var findComplement = function (num) {
+           let tmp = 2
+           while(tmp<=num){
+               tmp *= 2
+           }
+           return tmp-1-num
+        };
+        console.log(findComplement(3))
+    </script>
+</body>
+
+</html>
