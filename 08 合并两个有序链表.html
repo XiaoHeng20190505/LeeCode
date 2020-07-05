@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var transferArrayToListNode = function (arr) {
+            
+            result = {
+                val: '',
+                next: null
+            },
+            len = arr.length - 1
+
+            ListNode.val = arr[len]
+            ListNode.next = null
+            while (len >= 0) {
+                console.log(arr[len - 1])
+                console.log(ListNode)
+                result.val = arr[len - 1]
+                result.next = ListNode
+                ListNode = result
+                
+
+            }
+            return result
+        }
+        // console.log()
+        transferArrayToListNode([1,1,2,3,4,4])
+
+    </script>
+</body>
+
+</html>
